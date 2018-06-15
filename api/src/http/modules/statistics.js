@@ -19,9 +19,9 @@ module.exports = function statistics (server) {
     next()
   })
 
-  server.post('statistics/date', async (req, res, next) => {
+  server.get('statistics/dados/:year', async (req, res, next) => {
     try {
-      res.send(await db.statistics().sum(req.body.year))
+      res.send(await db.statistics().sum(req.params.year))
     } catch(error) {
       res.send(422, error)
     }

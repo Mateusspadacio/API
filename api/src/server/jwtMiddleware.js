@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken')
 const jwtMiddleware = (deps) => {
   return async (req, res, next) => {
     if (!deps.exclusions.includes(req.href())) {
-      const token = req.headers['x-access-token']
+      const token = req.headers.authorization;
 
       if (!token) {
         res.send(403, { error: 'Token não fornecido' })

@@ -1,3 +1,7 @@
+DROP DATABASE restful_ws;
+CREATE DATABASE restful_ws;
+USE restful_ws;
+
 -- Create syntax for TABLE 'users'
 CREATE TABLE `users` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,

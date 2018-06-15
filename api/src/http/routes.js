@@ -1,7 +1,7 @@
 const users = require('./modules/users')
 const statistics = require('./modules/statistics')
-
 const db = require('../services/mysql')
+
 
 const routes = (server) => {
   users(server)
@@ -17,10 +17,10 @@ const routes = (server) => {
     next()
   })
 
-  server.post('authenticationtoken', async (req, res, next) => {
+  server.get('authenticationtoken', async (req, res, next) => {
     try {
-      const token = req.body.token;
-      db.auth().authenticatetoken(token, res)
+      const token = req.headers.authorization;
+      res.send(await db.auth().authenticatetoken(token, res));
     } catch(err) {
       res.send(422, err)
     }

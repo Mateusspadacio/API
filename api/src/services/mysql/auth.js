@@ -29,21 +29,22 @@ const auth = deps => {
       })
     },
     authenticatetoken: (token, res) => {
-      if (!token) {
-        res.send(403, {error: 'Token não fornecido'})
-        return false
-      }
+      return new Promise((resolve, reject) => {
+        if (!token) {
+          resolve({valid: false});
+          return false
+        }
 
-      try {
-        jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
-          res.send(200, {valid: err ? false : true}); 
-        })
-        return true;
-      } catch (error) {
-        res.send(403, { error: 'Falha ao autenticar o token' })
-        return false
-      }
-
+        try {
+          jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+            resolve({valid: err ? false : true});
+          });
+          
+        } catch (error) {
+          resolve({valid: false});
+          return false
+        }
+      })
     }
   }
 }
