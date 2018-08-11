@@ -1,3 +1,7 @@
+/*
+  Responsável por verificar o token, caso o token do usuário
+  seja invalido, a API não autoriza a entrada da reqisição no endpoint
+*/
 
 const jwt = require('jsonwebtoken')
 

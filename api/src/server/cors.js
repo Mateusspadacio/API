@@ -1,4 +1,7 @@
-
+/*
+  Autoriza alguns cors para que a aplicação possa aceitar
+  tipos especificos de heders ou origens externas
+*/
 const corsMiddleware = require('restify-cors-middleware')
 
 const cors = corsMiddleware({

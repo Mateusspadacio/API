@@ -1,3 +1,9 @@
+/*
+    Arquivo onde os middlewares principais estão localizados,
+    quando uma requisição http é recebida pela API, ela invoca
+    todos os middlewares abaixo para realizar um tratamento
+    da requisição antes dela chegar no endpoint
+*/
 
 const restify = require('restify')
 const server = restify.createServer()
