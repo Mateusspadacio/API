@@ -1,3 +1,11 @@
+/*
+  Método responsável pela autenticação do token e de login e senha do usuário,
+  o mesmo  faz uma consulta ao banco de dados e verifica se login e senha são validos,
+  se forem a api gera um token e envia para o cliente.
+  Mas se o usuário ja tiver o token, o método authenticatetoken ira verificar se
+  o mesmo é valido para que o usuário possa ter acesso a API e não digitar o seu
+  email e senha novamente
+*/
 
 const sha1 = require('sha1')
 const jwt = require('jsonwebtoken')

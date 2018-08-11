@@ -1,3 +1,7 @@
+/*
+  Métodos responsáveis por se comunicar com o banco de dados 
+  e coletar as informações de estatisticas da casa
+*/
 
 const statistics = deps => {
   return {

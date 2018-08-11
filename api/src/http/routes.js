@@ -1,3 +1,10 @@
+/*
+  O Routes é responsável por centralizar todas as rotas
+  da API, dessa forma fica mais facil passar o servidor
+  da aplicação como parametro para os endpoints e assim
+  a API consegue interceptar as chamadas http.
+*/
+
 const users = require('./modules/users')
 const statistics = require('./modules/statistics')
 const db = require('../services/mysql')

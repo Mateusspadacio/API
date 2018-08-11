@@ -1,3 +1,8 @@
+/*
+  Métodos responsáveis por recuperar as informações
+  do usuário do banco de dados, e também cadastrar, atualizar e 
+  deletar o mesmo
+*/
 
 const sha1 = require('sha1')
 

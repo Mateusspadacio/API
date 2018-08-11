@@ -1,3 +1,10 @@
+/*
+  Endpoints de estatistica.
+  
+  Eles são responsáveis por fornecer os dados de agua, energia
+  gastos na casa para o aplicativo. 
+*/
+
 const db = require('../../services/mysql')
 
 module.exports = function statistics (server) {

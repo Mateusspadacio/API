@@ -1,3 +1,11 @@
+/*
+  Responsável por realizar a conexão com o banco de dados 
+  e manipular os errors do mesmo através da função 
+  errorHandler que manipula os erros genericos do banco de dados,
+  em seguida, o mesmo passa a instancia conectada para todos os
+  endpoints que exigem conexão via banco para consultar algum
+  dado
+*/
 
 const mysqlServer = require('mysql')
 

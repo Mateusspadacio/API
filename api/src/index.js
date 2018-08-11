@@ -1,4 +1,6 @@
-
+/*
+    Arquivo principal responsável por dar inicio a API
+*/
 require('dotenv').config()
 
 const server = require('./server')

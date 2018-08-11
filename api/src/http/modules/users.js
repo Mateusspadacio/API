@@ -1,4 +1,11 @@
 
+/*
+  Endpoints de usuário
+
+  São responséveis por devlver todos os dados relacionados
+  ao usuário especifico.
+*/
+
 const db = require('../../services/mysql')
 
 module.exports = function users (server) {
