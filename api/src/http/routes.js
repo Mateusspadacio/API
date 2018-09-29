@@ -7,12 +7,14 @@
 
 const users = require('./modules/users')
 const statistics = require('./modules/statistics')
+const ask = require('./modules/ask')
 const db = require('../services/mysql')
 
 
 const routes = (server) => {
   users(server)
   statistics(server)
+  ask(server);
 
   server.post('authentication', async (req, res, next) => {
     try {

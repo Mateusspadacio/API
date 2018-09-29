@@ -28,9 +28,11 @@ const dependencies = { connection, errorHandler }
 const usersModule = require('./users')(dependencies)
 const authModule = require('./auth')(dependencies)
 const statisticsModule = require('./statistics')(dependencies)
+const rhModule = require('./rh')(dependencies)
 
 module.exports = {
   users: () => usersModule,
   auth: () => authModule,
-  statistics: () => statisticsModule
+  statistics: () => statisticsModule,
+  rh: () => rhModule
 }

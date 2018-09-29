@@ -7,7 +7,8 @@ const jwt = require('jsonwebtoken')
 
 const jwtMiddleware = (deps) => {
   return async (req, res, next) => {
-    if (!deps.exclusions.includes(req.href())) {
+    const href = req.href().lastIndexOf('?') > 0 ? req.href().substring(0, req.href().lastIndexOf('?')) : req.href();
+    if (!deps.exclusions.includes(href)) {
       const token = req.headers.authorization;
 
       if (!token) {
