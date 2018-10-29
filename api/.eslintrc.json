@@ -1,3 +1,6 @@
 {
+    "space-before-function-paren": [
+        "never"
+    ],
     "extends": "standard"
 }

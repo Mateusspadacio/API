@@ -8,7 +8,7 @@
 
 const db = require('../../services/mysql')
 
-module.exports = function users (server) {
+module.exports = function users(server) {
   server.get('user', async (req, res, next) => {
     try {
       res.send(await db.users().all())
