@@ -15,7 +15,7 @@ const auth = deps => {
     authenticate: (email, password) => {
       return new Promise((resolve, reject) => {
         const { connection, errorHandler } = deps
-        const queryString = 'SELECT id, email FROM users WHERE email = ? AND password = ?'
+        const queryString = 'SELECT id, email FROM funcionario WHERE email = ? AND senha = ?';
         const queryData = [email, sha1(password)]
 
         connection.query(queryString, queryData, (error, results) => {
@@ -39,20 +39,26 @@ const auth = deps => {
     authenticatetoken: (token, res) => {
       return new Promise((resolve, reject) => {
         if (!token) {
-          resolve({valid: false});
+          resolve({ valid: false });
           return false
         }
 
         try {
           jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
-            resolve({valid: err ? false : true});
+            resolve({ valid: err ? false : true });
           });
-          
+
         } catch (error) {
-          resolve({valid: false});
+          resolve({ valid: false });
           return false
         }
       })
+    },
+    authenticateface: (id, valid) => {
+      return new Promise((resolve, reject) => {
+        const { connection, errorHandler } = deps;
+        const queryString = 'SELECT id_facial FROM funcionario WHERE id_facial = ?';
+      });
     }
   }
 }

@@ -18,7 +18,7 @@ const routes = (server) => {
 
   server.post('authentication', async (req, res, next) => {
     try {
-      const { email, password } = req.body
+      const { email, password } = req.body;
       res.send(await db.auth().authenticate(email, password))
     } catch (error) {
       res.send(422, error)
@@ -30,7 +30,7 @@ const routes = (server) => {
     try {
       const token = req.headers.authorization;
       res.send(await db.auth().authenticatetoken(token, res));
-    } catch(err) {
+    } catch (err) {
       res.send(422, err)
     }
     next()
@@ -39,8 +39,8 @@ const routes = (server) => {
   server.post('faceauth', async (req, res, next) => {
     const { id, valid } = req.body;
     try {
-      res.send(200, {msg: 'valido'})
-    } catch(err) {
+      res.send(200, await db.auth().authenticateface(id, valid))
+    } catch (err) {
       res.send(422, err)
     }
     next();

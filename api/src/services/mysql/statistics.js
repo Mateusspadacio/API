@@ -45,31 +45,31 @@ const statistics = deps => {
         })
       })
     },
-    save: (email, energia, agua, tempomusica, tempotelevisao) => {
+    save: (email, horas, datas, cons, type) => {
       return new Promise((resolve, reject) => {
         const { connection, errorHandler } = deps
 
-        connection.query('CALL func_insert_statistics(?, ?, ?, ?, ?)', 
-        [email, energia, agua, tempomusica, tempotelevisao], (error, results) => {
-          if (error) {
-            errorHandler(error, `Falha ao salvar as estatisticas`, reject)
-            return false
-          }
-          resolve({ sucess: 'Estatistica inserida com sucesso' })
-        })
+        connection.query('INSERT INTO sensor_agua(leitura) VALUES(?)',
+          [cons], (error, results) => {
+            if (error) {
+              errorHandler(error, `Falha ao salvar as estatisticas`, reject)
+              return false
+            }
+            resolve({ sucess: 'Estatistica inserida com sucesso' })
+          })
       })
     },
     update: (id, energia, agua, tempomusica, tempotelevisao, data) => {
       return new Promise((resolve, reject) => {
         const { connection, errorHandler } = deps
-        connection.query('UPDATE statistics SET energia = ?, agua = ?, tempomusica = ?, tempotelevisao = ?, data = ? WHERE id = ?', 
-        [energia, agua, tempomusica, tempotelevisao, data, id], (error, results) => {
-          if (error || !results.affectedRows) {
-            errorHandler(error, `Falha ao atualizar a estatistica de id ${id}`, reject)
-            return false
-          }
-          resolve({ statistic: {id, energia, agua, tempomusica, tempotelevisao, data} })
-        })
+        connection.query('UPDATE statistics SET energia = ?, agua = ?, tempomusica = ?, tempotelevisao = ?, data = ? WHERE id = ?',
+          [energia, agua, tempomusica, tempotelevisao, data, id], (error, results) => {
+            if (error || !results.affectedRows) {
+              errorHandler(error, `Falha ao atualizar a estatistica de id ${id}`, reject)
+              return false
+            }
+            resolve({ statistic: { id, energia, agua, tempomusica, tempotelevisao, data } })
+          })
       })
     },
     del: (id) => {

@@ -7,7 +7,7 @@
 
 const db = require('../../services/mysql')
 
-module.exports = function statistics (server) {
+module.exports = function statistics(server) {
   server.get('statistics', async (req, res, next) => {
     try {
       res.send(await db.statistics().all())
@@ -29,17 +29,18 @@ module.exports = function statistics (server) {
   server.get('statistics/dados/:year', async (req, res, next) => {
     try {
       res.send(await db.statistics().sum(req.params.year))
-    } catch(error) {
+    } catch (error) {
       res.send(422, error)
     }
     next()
   })
 
   server.post('statistics', async (req, res, next) => {
-    const { email, energia, agua, tempomusica, tempotelevisao } = req.body
-    console.log(req.body.email)
+    // {"hora":horas[-1], "data": datas[-1], "cons": cons[-1]}
+    const { email, horas, datas, cons, type } = req.body
+    console.log(req.body);
     try {
-      res.send(await db.statistics().save(email, energia, agua, tempomusica, tempotelevisao))
+      res.send(await db.statistics().save(email, horas, datas, cons, type))
     } catch (error) {
       res.send(422, error)
     }

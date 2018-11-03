@@ -93,6 +93,10 @@ CREATE TABLE `empresa` (
 CREATE TABLE `funcionario` (
   `id` int(11) NOT NULL,
   `nome` varchar(255) NOT NULL,
+  `id_facial` varchar(255) NOT NULL,
+  `face_validada` boolean,
+  `email` varchar(255) NOT NULL,
+  `senha` varchar(255) NOT NULL,
   `cargo` varchar(255) NOT NULL,
   `rg` varchar(255) NOT NULL,
   `cpf` varchar(255) NOT NULL,
