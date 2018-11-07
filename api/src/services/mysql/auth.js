@@ -12,11 +12,11 @@ const jwt = require('jsonwebtoken')
 
 const auth = deps => {
   return {
-    authenticate: (email, password) => {
+    authenticate: (id_facial, password) => {
       return new Promise((resolve, reject) => {
         const { connection, errorHandler } = deps
-        const queryString = 'SELECT id, email FROM funcionario WHERE email = ? AND senha = ?';
-        const queryData = [email, sha1(password)]
+        const queryString = 'SELECT id, id_facial, face_validada FROM funcionario WHERE (id_facial = ? OR email = ?) AND senha = ?';
+        const queryData = [id_facial, id_facial, sha1(password)]
 
         connection.query(queryString, queryData, (error, results) => {
           if (error || !results.length) {
@@ -24,15 +24,15 @@ const auth = deps => {
             return false
           }
 
-          const { email, id } = results[0]
+          const { id_facial, id } = results[0]
 
           const token = jwt.sign(
-            { email, id },
+            { id_facial, id },
             process.env.JWT_SECRET,
             { expiresIn: 60 * 60 * 24 }
           )
 
-          resolve({ id, email, token })
+          resolve({ id, id_facial, token })
         })
       })
     },
@@ -58,6 +58,14 @@ const auth = deps => {
       return new Promise((resolve, reject) => {
         const { connection, errorHandler } = deps;
         const queryString = 'SELECT id_facial FROM funcionario WHERE id_facial = ?';
+        connection.query(queryString, [id], (error, results) => {
+          if (error) return reject(error);
+          if (!results[0]) return reject({ error: "Usuario não encontrado" })
+          connection.query('UPDATE funcionario SET face_validada = 1 WHERE id_facial = ?', [results[0].id_facial], (error) => {
+            if (error) return reject(error);
+            resolve({ id_facial: results[0].id_facial, valid: true });
+          })
+        });
       });
     }
   }

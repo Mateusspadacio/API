@@ -37,7 +37,7 @@ module.exports = function statistics(server) {
 
   server.post('statistics', async (req, res, next) => {
     // {"hora":horas[-1], "data": datas[-1], "cons": cons[-1]}
-    const { email, horas, datas, cons, type } = req.body
+    const { email, horas, data, cons, type } = req.body
     console.log(req.body);
     try {
       res.send(await db.statistics().save(email, horas, datas, cons, type))

@@ -18,8 +18,8 @@ const routes = (server) => {
 
   server.post('authentication', async (req, res, next) => {
     try {
-      const { email, password } = req.body;
-      res.send(await db.auth().authenticate(email, password))
+      const { id_facial, email, password } = req.body;
+      res.send(await db.auth().authenticate(id_facial || email, password))
     } catch (error) {
       res.send(422, error)
     }
