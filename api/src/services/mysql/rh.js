@@ -1,3 +1,10 @@
+/*
+    RH eletronico,
+    responsavel por realizar a consulta no banco de dados com base
+    na fala enviada pela api em python, as constantes a baixo são 
+    todas as frases que a api consegue capturar no momento
+*/
+
 const {
     QUAIS_MEUS_BENEFICIOS,
     MEU_PROXIMO_EXAME_PERIODICO,

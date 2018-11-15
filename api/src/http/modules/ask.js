@@ -1,3 +1,7 @@
+/*
+  endpoint que recebe a pergunta enviada pela api e realiza
+  a consulta ao banco de dados retornando o que foi solicitado
+*/
 const db = require('../../services/mysql')
 
 module.exports = function ask(server) {

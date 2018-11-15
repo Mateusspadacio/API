@@ -1,3 +1,6 @@
+/**
+ * todas as perguntas que a api consegue entender
+ */
 module.exports = {
     QUAIS_MEUS_BENEFICIOS: 'quais-meus-beneficios',
     MEU_PROXIMO_EXAME_PERIODICO: 'meu-proximo-exame-periodico',
